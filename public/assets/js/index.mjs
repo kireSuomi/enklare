@@ -64,6 +64,13 @@ class Application {
     return jokeDiv;
   }
 
+  getDominantCategoryMarkup(dominantData) {
+    let markup = "";
+    dominantData.forEach((data) => {
+      markup += `${data.category} (${data.percentage.toFixed(0)}%), `;
+    });
+    return markup;
+  }
   printStatistics() {
     const jokes = this.jokes;
 
@@ -94,14 +101,14 @@ class Application {
       const singleDominantData = getDominantCategory(singleJokes);
 
       document.getElementById("statistics").innerHTML = `
-      <h2>Statistics single:</h2>
-      <p>Total chars: ${totalCharsSingleJokes}</p>
-      <p>Third letter of the last joke occurence (${singleThirdLetter}): ${singleThirdLetterOccurences}</p>
-      <p>Most commong letter: ${singleMostCommonLetter.letters[0]}</p>
-      <p>Dominant category: ${
-        singleDominantData.category
-      } (${singleDominantData.percentage.toFixed(0)}%)</p>
-    `;
+        <h2>Statistics single:</h2>
+        <p>Total chars: ${totalCharsSingleJokes}</p>
+        <p>Third letter of the last joke occurence (${singleThirdLetter}): ${singleThirdLetterOccurences}</p>
+        <p>Most commong letter: ${singleMostCommonLetter.letters[0]}</p>
+        <p>Dominant categorie(s): ${this.getDominantCategoryMarkup(
+          singleDominantData
+        )}</p>
+      `;
     } else {
       document.getElementById("statistics").innerHTML = "";
     }
@@ -136,9 +143,9 @@ class Application {
       <p>Total chars: ${totalCharsTwoPartJokes}</p>
       <p>Third letter of the last joke occurence (${doubbleThirdLetter}): ${doubbleThirdLetterOccurences}</p>
       <p>Most commong letter: ${doubbleMostCommonLetter.letters[0]}</p>
-      <p>Dominant category: ${
-        doubbleDominantData.category
-      } (${doubbleDominantData.percentage.toFixed(0)}%)</p>
+      <p>Dominant categorie(s): ${this.getDominantCategoryMarkup(
+        doubbleDominantData
+      )}</p>
     `;
     } else {
       document.getElementById("statistics_doubble").innerHTML = "";
