@@ -9,7 +9,7 @@ const API_URL = "https://v2.jokeapi.dev/joke/Programming,Pun?safe-mode";
 app.get("/api/jokes", async (req: Request, res: Response) => {
   try {
     const amount = Number(req.query.amount) || 10;
-    const type = req.query.type || "any";
+    const type = String(req.query.type) || "any";
 
     if (amount < 5 || amount > 10) {
       res.status(400).json({ error: "Amount must be between 5 and 10" });
