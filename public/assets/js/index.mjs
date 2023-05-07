@@ -124,12 +124,20 @@ class Application {
       }, 0);
 
       //third letter of last joke occurenct amount
-      const doubbleThirdLetter = twoPartJokes
+      let doubbleThirdLetter = "";
+
+      const split = twoPartJokes
         .reverse()[0]
         .delivery.split(" ")
         .reverse(0)[0]
-        .split("")[2]
-        .toLocaleLowerCase();
+        .split("");
+
+      //Sometimes the last jokes last word dosent have a 3rd letter, take the last letter instead
+      if (split[2]) {
+        doubbleThirdLetter = split[2].toLocaleLowerCase();
+      } else {
+        doubbleThirdLetter = twoPartSum.split("").reverse()[0];
+      }
       const doubbleThirdLetterOccurences = letterOccurence(
         twoPartSum,
         doubbleThirdLetter
