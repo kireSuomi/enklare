@@ -6,6 +6,9 @@ const port = 3000;
 
 const API_URL = "https://v2.jokeapi.dev/joke/Programming,Pun?safe-mode";
 
+//set up the public folder
+app.use(express.static(__dirname + "/../public"));
+
 app.get("/api/jokes", async (req: Request, res: Response) => {
   try {
     const amount = Number(req.query.amount) || 10;
