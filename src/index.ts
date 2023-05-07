@@ -6,7 +6,7 @@ const port = 3000;
 
 const API_URL = "https://v2.jokeapi.dev/joke/Programming,Pun?safe-mode";
 
-app.get("/jokes", async (req: Request, res: Response) => {
+app.get("/api/jokes", async (req: Request, res: Response) => {
   try {
     const amount = req.query.amount || 10;
     const type = req.query.type || "any";
@@ -28,7 +28,9 @@ app.get("/jokes", async (req: Request, res: Response) => {
 });
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, aa!");
+  //Send file index.html in /public folder one abote this one
+  //one foldere up
+  res.sendFile("index.html", { root: __dirname + "/../public" });
 });
 
 app.listen(port, () => {
